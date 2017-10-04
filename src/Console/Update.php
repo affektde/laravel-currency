@@ -48,27 +48,23 @@ class Update extends Command
    */
   public function handle()
   {
-    $this->switchSchema('manager');
-    $apps = \Labelcontrol\Models\Application::get();
-    foreach ($apps as $app) {
-      Config::set('database.default', 'public');
+    Config::set('database.default', 'public');
 
-      // Get Settings
-      $defaultCurrency = $this->currency->config('default');
+    // Get Settings
+    $defaultCurrency = $this->currency->config('default');
 
-      if ($this->input->getOption('openexchangerates')) {
-        if (!$api = $this->currency->config('api_key')) {
-          $this->error('An API key is needed from OpenExchangeRates.org to continue.');
+    if ($this->input->getOption('openexchangerates')) {
+      if (!$api = $this->currency->config('api_key')) {
+        $this->error('An API key is needed from OpenExchangeRates.org to continue.');
 
-          return;
-        }
-
-        // Get rates
-        $this->updateFromOpenExchangeRates($defaultCurrency, $api);
-      } else {
-        // Get rates
-        $this->updateFromYahoo($defaultCurrency);
+        return;
       }
+
+      // Get rates
+      $this->updateFromOpenExchangeRates($defaultCurrency, $api);
+    } else {
+      // Get rates
+      $this->updateFromYahoo($defaultCurrency);
     }
   }
 
