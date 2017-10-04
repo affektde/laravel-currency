@@ -48,7 +48,7 @@ class Update extends Command
   public function handle()
   {
     $this->switchSchema('manager');
-    $apps = \Labelcontrol\Models\Application::where('hash', 'raejb')->get();
+    $apps = \Labelcontrol\Models\Application::get();
     foreach ($apps as $app) {
       $this->switchSchema($app->hash);
       $this->info($app->hash);
