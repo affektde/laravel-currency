@@ -4,6 +4,7 @@ namespace Torann\Currency\Console;
 
 use DateTime;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Config;
 
 class Update extends Command
 {
@@ -50,8 +51,7 @@ class Update extends Command
     $this->switchSchema('manager');
     $apps = \Labelcontrol\Models\Application::get();
     foreach ($apps as $app) {
-      $this->switchSchema($app->hash);
-      $this->info($app->hash);
+      Config::set('database.default', 'public');
 
       // Get Settings
       $defaultCurrency = $this->currency->config('default');
