@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Config;
 
 class Update extends Command
 {
-  use \Labelcontrol\Traits\DatabaseTrait;
   /**
    * The name and signature of the console command.
    *
