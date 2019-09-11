@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 
 class Update extends Command
 {
-  use \Labelcontrol\Traits\DatabaseTrait;
+  use \App\Traits\DatabaseTrait;
   /**
    * The name and signature of the console command.
    *
